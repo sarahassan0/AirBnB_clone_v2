@@ -6,7 +6,7 @@ from sqlalchemy import Column, Integer, String, ForeignKey, Float, Table
 from sqlalchemy.orm import relationship
 import os
 from models.amenity import Amenity
-from models.__init__ import storage
+from models import storage
 
 
 place_amenity = Table(
