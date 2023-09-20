@@ -3,30 +3,23 @@
 from models.base_model import BaseModel, Base
 from sqlalchemy import Column, String, ForeignKey
 from sqlalchemy.orm import relationship
-import models 
+import models
 from models.city import City
+import os
 
 
-
-class State(BaseModel,Base):
+class State(BaseModel, Base):
     """ State class """
-    if models.storage_engine == 'db':
-        __tablename__ = 'states'
-        name = Column(String(128), nullable=False) 
-        cities = relationship('City', backref='state')
-    else:
-        name = ""
+    __tablename__ = 'states'
+    name = Column(String(128), nullable=False)
+    cities = relationship('City', backref='state')
 
-    def __init__(self, *args, **kwargs):
-        """init the state class"""
-        super().__init__(*args, **kwargs)
-
-if models.storage_engine != "db":
-    @property
-    def cities(self):
-        st_cities = []
-        for city in models.storage.all(City).values():
-            if city.state_id == self.id:
-                st_cities.append(city)
-        return st_cities
-            
+    if os.getenv("HBNB_TYPE_STORAGE") != 'db':
+        @property
+        def cities(self):
+            """ getter for cities"""
+            st_cities = []
+            for city in models.storage.all(City).values():
+                if city.state_id == self.id:
+                    st_cities.append(city)
+            return st_cities

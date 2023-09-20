@@ -7,10 +7,8 @@ from sqlalchemy import Column, String, DateTime
 import models 
 
 # to avoid the conflict between the storage engine classes and don't ruin imports statments
-if models.storage_engine == "db":
-    Base = declarative_base()
-else:
-    Base = object
+Base = declarative_base()
+
 class BaseModel:
     """A base class for all hbnb models"""
     id = Column(String(60), nullable=False, primary_key=True, unique=True)

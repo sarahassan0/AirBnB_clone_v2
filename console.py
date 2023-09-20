@@ -118,8 +118,6 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             print("** class name missing **")
             return
-        # print(args)
-
         args = args.split()
         if args[0] not in HBNBCommand.classes:
             print("** class doesn't exist **")
@@ -129,7 +127,6 @@ class HBNBCommand(cmd.Cmd):
         for i in args[1:]:
             k, v = i.split("=")
             if v.isdigit():
-                print(v)
                 a_value = int(v)
             else:
                 try:
@@ -141,9 +138,7 @@ class HBNBCommand(cmd.Cmd):
                         continue
             setattr(new_instance, k, a_value)
         new_instance.save()
-        storage.save()
         print(new_instance.id)
-        # print(new_instance)
 
     def help_create(self):
         """ Help information for the create method """
@@ -233,23 +228,6 @@ class HBNBCommand(cmd.Cmd):
     #             print_list.append(str(v))
     #        print(print_list)
 
-    
-    # def do_all(self, args):
-    #     """ Shows all objects, or all objects of a class"""
-    #     print_list = []
-
-    #     if args:
-    #         print(args)
-    #         args = args.split(' ')[0]  # remove possible trailing args
-    #         if args not in HBNBCommand.classes:
-    #             print("** class doesn't exist **")
-    #             return
-    #         else:
-    #             print(args)
-    #             print_list = storage.all(args)
-    #     else:
-    #             print_list = storage.all()
-    #     print(print_list)
 
     def do_all(self, args):
         """ Shows all objects, or all objects of a class"""
