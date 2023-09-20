@@ -51,7 +51,7 @@ class Place(BaseModel, Base):
             """ Getter for Place's Amenities"""
             amenities = []
             for amenity in models.storage.all(Amenity).values():
-                if amenity.place_id == self.id:
+                if amenity.id in self.amenity_ids:
                     amenities.append(amenity)
             return amenities
         
