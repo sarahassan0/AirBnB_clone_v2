@@ -17,7 +17,7 @@ class State(BaseModel, Base):
     if os.getenv('HBNB_TYPE_STORAGE') != 'db':
         @property
         def cities(self):
-            """ getter for cities of the state"""
+            """ Getter for Cities of the State"""
             st_cities = []
             for city in self.cities:
                 if city.state_id == self.id:
