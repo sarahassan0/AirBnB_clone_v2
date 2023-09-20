@@ -12,7 +12,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 
 classes = {
-'BaseModel': BaseModel, 'User': User, 'Place': Place,
+'User': User, 'Place': Place,
 'State': State, 'City': City, 'Amenity': Amenity,
 'Review': Review
 }
@@ -40,6 +40,18 @@ class DBStorage:
             
     def all(self, cls=None):
         """Returns a dictionary of models currently in DB storage"""
+        dic = {}
+        if cls is None:
+            classes = [State, City]
+            for model in classes:
+                for obj in self.__session.query(model).all():
+                    dic[f"{model.__name__}.{obj.id}"] = obj
+        else:
+            for obj in self.__session.query(cls):
+                dic[f"{obj.__class__.__name__}.{obj.id}"] = obj
+
+        return dic
+
 
 
     def new(self, obj):
