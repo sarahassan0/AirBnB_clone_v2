@@ -9,6 +9,7 @@ from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
 
+
 class FileStorage:
     """This class manages storage of hbnb models in JSON format"""
     __file_path = 'file.json'
@@ -65,7 +66,7 @@ class FileStorage:
             pass
         except Exception as e:
             pass
-            
+
     def delete(self, obj=None):
         """ delete obj from __objects"""
         if obj is not None:

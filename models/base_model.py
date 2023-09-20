@@ -4,10 +4,10 @@ import uuid
 from datetime import datetime
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, String, DateTime
-import models 
+import models
 
-# to avoid the conflict between the storage engine classes and don't ruin imports statments
 Base = declarative_base()
+
 
 class BaseModel:
     """A base class for all hbnb models"""
@@ -33,6 +33,7 @@ class BaseModel:
                                                      '%Y-%m-%dT%H:%M:%S.%f')
             del kwargs['__class__']
             self.__dict__.update(kwargs)
+
     def __str__(self):
         """Returns a string representation of the instance"""
         _dict = self.__dict__.copy()
@@ -56,7 +57,7 @@ class BaseModel:
         dictionary['updated_at'] = self.updated_at.isoformat()
         dictionary.pop("_sa_instance_state", None)
         return dictionary
-    
+
     def delete(self):
         """delete the current instance from the storage"""
         models.storage.delete(self)

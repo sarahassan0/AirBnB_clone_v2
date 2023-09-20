@@ -228,7 +228,6 @@ class HBNBCommand(cmd.Cmd):
     #             print_list.append(str(v))
     #        print(print_list)
 
-
     def do_all(self, args):
         """ Shows all objects, or all objects of a class"""
         all_list = []
@@ -247,8 +246,6 @@ class HBNBCommand(cmd.Cmd):
         print("[", end="")
         print(", ".join(all_list), end="")
         print("]")
-                
-
 
     def help_all(self):
         """ Help information for the all command """

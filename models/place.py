@@ -17,6 +17,7 @@ place_amenity = Table(
            primary_key=True, nullable=False),
 )
 
+
 class Place(BaseModel, Base):
     """A place to stay."""
 
@@ -31,10 +32,10 @@ class Place(BaseModel, Base):
     price_by_night = Column(Integer, default=0, nullable=False)
     latitude = Column(Float)
     longitude = Column(Float)
-    reviews = relationship('Review', backref = 'place',  cascade='delete')
+    reviews = relationship('Review', backref='place',  cascade='delete')
     amenity_ids = []
     amenities = relationship('Amenity', secondary='place_amenity',
-                             overlaps="place_amenities",viewonly=False)
+                             overlaps="place_amenities", viewonly=False)
 
     if os.getenv('HBNB_TYPE_STORAGE') != 'db':
         @property
@@ -45,16 +46,16 @@ class Place(BaseModel, Base):
                 if review.place_id == self.id:
                     reviews.append(review)
             return reviews
-        
+
         @property
-        def amenities (self):
+        def amenities(self):
             """ Getter for Place's Amenities"""
             amenities = []
             for amenity in models.storage.all(Amenity).values():
                 if amenity.id in self.amenity_ids:
                     amenities.append(amenity)
             return amenities
-        
+
         @amenities.setter
         def amenities(self, amenity):
             """Setter for Amenities"""
