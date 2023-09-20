@@ -48,7 +48,7 @@ class DBStorage:
         """Returns a dictionary of models currently in DB storage"""
         dic = {}
         if cls is None:
-            classes = [State, City, User]
+            classes = [State, City, User, Place]
             for model in classes:
                 for obj in self.__session.query(model).all():
                     dic[f"{model.__name__}.{obj.id}"] = obj
