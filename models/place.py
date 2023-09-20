@@ -48,7 +48,7 @@ class Place(BaseModel, Base):
         
         @property
         def amenities (self):
-            """ Getter for Place's Amenities """
+            """ Getter for Place's Amenities"""
             amenities = []
             for amenity in storage.all(Amenity).values():
                 if amenity.place_id == self.id:
