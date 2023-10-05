@@ -9,9 +9,9 @@ def do_pack():
     """pack web_static folder"""
     try:
         cur_date = datetime.now().strftime('%Y%m%d%H%M%S')
-        arch = f'web_static_{cur_date}.tgz web_static'
+        arch = f'web_static_{cur_date}.tgz'
         local('mkdir -p versions')
-        local(f'tar -cvzf versions/{arch}')
-        return 'versions/'
+        local(f'tar -cvzf versions/{arch} web_static')
+        return f'versions/{arch}'
     except Exception:
         return None
