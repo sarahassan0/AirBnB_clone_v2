@@ -1,9 +1,17 @@
-# Prepare my web servers
+# Prepare your web servers
 
-file{"/data":
-ensure => "directory",
-owner  => "ubuntu",
-group  => "ubuntu",}
+file{"/data/web_static/releases/test/index.html":
+ensure  => "file",
+content => "hello world",
+owner   => "ubuntu",
+group   => "ubuntu",
+require => File["/data/web_static/releases/test"],}
+
+file{"/data/web_static/releases/test":
+ensure  => "directory",
+owner   => "ubuntu",
+group   => "ubuntu",
+require => File["/data/web_static/releases"],}
 
 file{"/data/web_static":
 ensure  => "directory",
@@ -30,26 +38,18 @@ group   => "ubuntu",
 target  => "/data/web_static/releases/test",
 require => File["/data/web_static"],}
 
-file{"/data/web_static/releases/test":
-ensure  => "directory",
-owner   => "ubuntu",
-group   => "ubuntu",
-require => File["/data/web_static/releases"],}
 
-file{"/data/web_static/releases/test/index.html":
-ensure  => "file",
-content => "hello world",
-owner   => "ubuntu",
-group   => "ubuntu",
-require => File["/data/web_static/releases/test"],}
+file{"/data":
+ensure => "directory",
+owner  => "ubuntu",
+group  => "ubuntu",}
 
 file{"/etc/nginx/sites-available/default":
   ensure  => "file",
   content => "server {
     listen 80;
-    add_header X_Served_by $HOSTNAME;
     listen [::]:80 default_server;
-    server_name tuttrue.tech;
+    server_name emadanwer.tech;
     location /hbnb_static {
         alias /data/web_static/current/;
     }
