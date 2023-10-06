@@ -49,7 +49,7 @@ file{"/etc/nginx/sites-available/default":
   content => "server {
     listen 80;
     listen [::]:80 default_server;
-    server_name emadanwer.tech;
+    server_name tuttrue.tech;
     location /hbnb_static {
         alias /data/web_static/current/;
     }
